@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: msdocs-storage-bind-function-service
+metadata:
+  template: msdocs-storage-bind-function-service@1.0.0
+
+services:
+  api:
+    project: javascript-v4
+    language: js
+    host: function
+
+hooks:
+  postprovision:
+    windows:
+      shell: pwsh
+      run: azd env get-values > javascript-v4/.env
+    posix:
+      shell: sh
+      run: azd env get-values > javascript-v4/.env
